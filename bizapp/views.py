@@ -329,3 +329,5 @@ def completed(request):
 
     return render(request, 'completed.html',context)            
 
+
+
