@@ -271,7 +271,8 @@ def paidorder(request):
     #at this function we are collecting data to take to paystack at the point of intergation
         api_key = 'sk_test_19cf2a301b21b310fb7f6d8c7e5e4377ba77232d' #api key from paystack
         curl = 'https://api.paystack.co/transaction/initialize' #the number with which to reach paystack
-        call_back_url = 'http://3.144.98.189/completed' # a template to show completed if transaction is successful
+        call_back_url ='http://3.144.98.189/completed' # a template to show completed if transaction is successful
+        # call_back_url ='http://localhost:8000/completed' # a template to show completed if transaction is successful
         total = float(request.POST['gtotal']) * 100
         order_num = request.POST['order_no'] #the cart number being sent to paystack
         ref_num = ''.join(random.choices(string.digits + string.ascii_letters, k=8))# random generated number being sent to paystack
