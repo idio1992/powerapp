@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %} home {% endblock title %}
+{% block content %}
+<div>
+    <div class="container">
+        <h1>LATEST PRODUCTS</h1>
+        <div class="row"> 
+         {% if feautured %}
+           {% for item in feautured %}
+           <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-3 mt-2 m-3"> 
+              <div class="card" style="width: 18rem;">
+                 <a href="{% url 'detail' item.id %}"><img src="{{item.img.url}}" class="card-img-top" alt="..."></a> 
+                 <div class="card-body">
+                   <h5 class="card-title"><p>product name: {{item.name}}</p></h5>
+                   <p class="card-text">price: {{item.price}}</p>
+                 </div>
+               </div>
+           </div>
+           {% endfor %}
+         {% endif %}   
+        </div>
+       </div>
+       <div class="container">
+           <h1>NEW ARRIVALS</h1>
+        <div class="row"> 
+         {% if New_arrival %}
+           {% for item in New_arrival %}
+           <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-3 mt-2 m-3"> 
+              <div class="card" style="width: 18rem;">
+                 <a href="{% url 'detail' item.id %}"><img src="{{item.img.url}}" class="card-img-top" alt="..."></a> 
+                 <div class="card-body">
+                   <h5 class="card-title"><p>product name: {{item.name}}</p></h5>
+                   <p class="card-text">price: {{item.price}}</p>
+                 </div>
+               </div>
+           </div>
+           {% endfor %}
+         {% endif %}   
+        </div>
+       </div>
+</div>
+{% endblock content %}

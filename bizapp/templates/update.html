@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %} update {% endblock title %}
+
+{% block content %}
+  <div class="container">
+      <div class="row">
+          <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+              <div class="card">
+                  <div class="card-body">
+                      <p class="card text"><a href="{% url 'index' %}" class="btn">home</a></p> 
+                      <p class="card text"><a href="{% url 'profile' %}" class="btn">Profile</a></p> 
+                      <p class="card text"><a href="{% url 'update' %}" class="btn">Profile update</a></p> 
+                      <p class="card text"><a href="" class="btn">home</a></p> 
+                  </div>
+              </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-6 col-lg-8">
+              <form action="{% url 'update' %}" method='POST' enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{updateform.as_p}}
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- <input type="button" value="submit">   -->
+              </form>
+            </div>
+        </div>
+          
+      </div>
+
+  </div>
+{% endblock content %}

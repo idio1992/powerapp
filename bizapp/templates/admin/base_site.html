@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+
+{% load static %}
+
+{% block branding %}
+    <div id="header">
+        <h1 style="color: palevioletred;"><a href="/admin/">Powerapp administration</a></h1>
+    </div>
+  
+  <!-- <h1><a href="/admin/">Powerapp administration</a></h1> -->
+  <!-- <h1>Powerapp admin</h1> -->
+{% endblock branding %}
+
+{% block extrastyle %}
+  <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+{% endblock extrastyle %}

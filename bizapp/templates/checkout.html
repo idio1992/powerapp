@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %} checkout {% endblock title %}
+{% load humanize %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Product</th>
+            <th scope="col">Image</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>         
+         {% if cart %} {% for item in cart %}
+         <tr>
+            <th>{{item.product.name}}</th>
+            <td><img src="{{item.product.img.url}}" alt="" width="40px"></td>
+            <td>{{item.quantity}}</td>
+          </tr>
+         {% endfor %}{% endif %}
+        </tbody>
+        <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td>Total: {{grand_total|floatformat:2 |intcomma}}</td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+  <div class="col-12 col-sm-6 col-md-6 col-lg-6 mt-2">
+    <form action=" {% url 'paidorder' %} " method="POST"> 
+      {% csrf_token %}
+      <div class="form-control">
+        <input type="text" value="{{profile.first_name}}" placeholder="first name">
+      </div>
+      <div class="form-control">
+        <input type="text" value="{{profile.last_name}}" placeholder="last name">
+      </div>
+      <div class="form-control">
+        <input type="text" value="{{profile.phone}}" placeholder="{{phone number">
+      </div>
+      <div class="form-contro">
+        <input type="text" value="{{profile.address}}" placeholder="address">
+      </div>
+      <div class="form-control">
+        <input type="text" value="{{profile.city}}" placeholder="city">
+      </div>
+      <div class="form-control">
+      <input type="text" value="{{profile.state}}" placeholder="state">
+      </div>
+      <input type="" name="gtotal" value="{{grand_total}}">
+      <input type="" name="order_no" value="{{cart_code}}">
+      <button type="submit" class="btn btn-success"> place order</button>
+    </form>
+  </div>
+</div>
+{% endblock content %}

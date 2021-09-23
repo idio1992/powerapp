@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %} product category {% endblock title %}
+{% block content %}
+<div class="container">
+    <div class="row"> 
+     {% if single %}
+       {% for item in single %}
+       <div class="col-12 col-sm-6 col-md-3 col-lg-3 mb-3 mt-2 m-3"> 
+          <div class="card" style="width: 18rem;">
+             <a href="{% url 'detail' item.id %}"><img src="{{item.img.url}}" class="card-img-top" alt="..."></a> 
+             <div class="card-body">
+               <h5 class="card-title"><p>product Category: {{item.category}}</p></h5>
+               <p class="card-text">price: {{item.price}}</p>
+               <p>availability: {{item.available}}</p>
+               <p>feautured: {{item.featured}}</p>
+               <p>arrival: {{item.new_arrival}}</p>
+               <form action="{% url 'shopcart' %}" method="POST"> 
+                 {% csrf_token %}
+                 <input type="number" name="quantity" value="1" min='{{item.min_quantity}}' max='{{item.max_quantity}}'>
+                <input type="hidden" name="pid" value="{{item.id}}">
+                <button type="sumbit" class="btn btn-primary">Add to cart</button>
+               </form>
+             </div>
+           </div>
+       </div>
+       {% endfor %}
+     {% endif %}   
+    </div>
+   </div>
+{% endblock content %}

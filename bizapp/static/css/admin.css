@@ -1,0 +1,15 @@
+#branding h1{
+    color: white;
+}
+#header{
+    background: crimson;
+}
+#header h1{
+    color: palevioletred;
+}
+.module{
+    background: crimson;
+}
+.module caption{
+    background-color: crimson;
+}

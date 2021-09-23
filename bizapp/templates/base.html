@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- boostrap css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--css link-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+    <title> {% block title %}{% endblock title %}  </title>
+</head>
+<body>
+    <!--header-->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="{% static 'image/glo.jpg' %}" alt="" width="80" height="70"></a> 
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+           <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'all_products' %}">Product</a> </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'categories' %}">All Categories</a></li>                 
+                     {% if categories %}
+                     {% for item in categories %}
+                          <li><a class="dropdown-item" href="{% url 'prod_category' item.id %}">{{item.title}}</a></li>
+                     {% endfor %}
+                     {% endif %}                  
+                </ul>
+              </li>
+
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profile' %}" tabindex="-1" aria-disabled="true">profile</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logoutform' %}" tabindex="-1" aria-disabled="true">Logout</a>
+              </li>
+              <a href="cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-basket-fill" viewBox="0 0 16 16">
+                  <path d="M5.071 1.243a.5.5 0 0 1 .858.514L3.383 6h9.234L10.07 1.757a.5.5 0 1 1 .858-.514L13.783 6H15.5a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 6h1.717L5.07 1.243zM3.5 10.5a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3zm2.5 0a.5.5 0 1 0-1 0v3a.5.5 0 0 0 1 0v-3z"/>
+                </svg>
+                {% if itemread > 0 %}
+                <span class="badge badge-pill badge-warning">{{itemread}}</span>
+                {% else %}
+                <span class="badge badge-pill badge-warning">0</span>
+                {% endif %}                               
+              </a>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'loginform' %}" tabindex="-1" aria-disabled="true">Login</a>
+              </li>              
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signupform' %}" tabindex="-1" aria-disabled="true">Signup</a> 
+              </li>
+            </ul>               
+              {% endif %}            
+          </div>
+        </div>
+      </nav>
+      {% if messages%}
+     {% for message in messages %}
+     <div class="alert alert-warning alert-dismissible fade show" role="alert">
+       {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+     {% endfor %}
+    {% endif %}
+    <!--header done-->
+    <!--banner-->
+    <!--banner done-->
+    <!--content-->
+    {% block content %}
+      
+    {% endblock content %}
+    <!--content done-->
+    <!--footer-->
+    <!--footer done-->
+
+    <!--boostrapjs-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
