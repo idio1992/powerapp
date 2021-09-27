@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-(^_a_m1yxfpvvl)2y_73s$l0#)lm1j-!ybffpsyb)z$qn^%&_s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['3.144.98.189']
+ALLOWED_HOSTS = ['3.140.192.45']
 
 
 # Application definition
@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'pshop.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'powerapp',
+        'NAME': 'bizapp',
         'USER': 'okonidioadmin',
         'PASSWORD': 'okon4real',
         'HOST': '127.0.0.1',
